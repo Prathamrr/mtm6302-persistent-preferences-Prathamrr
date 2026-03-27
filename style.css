@@ -1,111 +1,66 @@
-/* BASE STYLES */
+/* BASE STYLING */
 body {
   font-family: Helvetica, sans-serif;
   margin: 0;
-  padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-h2 {
-  margin-bottom: 12px;
-}
-
-/* LAYOUT STRUCTURE */
-.container {
+/* MAIN LAYOUT */
+.wrapper {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  gap: 18px;
-  padding: 20px;
 }
 
-section {
+.items-section {
   flex: 2;
   padding: 20px;
 }
 
-aside {
+.settings-panel {
   flex: 1;
-  background-color: #f2f2f2;
-  padding: 28px;
-  border-radius: 10px;
-  max-width: 420px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* SIDEBAR CONTENT */
-aside h2 {
-  font-size: 26px;
-  margin-bottom: 18px;
-}
-
-aside label {
-  display: block;
-  font-weight: 500;
-  margin: 14px 0 6px;
-}
-
-aside select {
-  width: 100%;
-  padding: 9px;
-  border-radius: 6px;
-  border: 1px solid #bbb;
-  font-size: 15px;
-  background-color: #fff;
-}
-
-/* LIST ITEMS */
-#list div {
-  transition: all 0.25s ease-in-out;
-}
-
-.expanded div {
-  padding: 14px;
-  margin: 10px 0;
-  border: 1px solid #bbb;
-}
-
-.compact div {
-  padding: 6px;
-  margin: 3px 0;
-}
-
-.boxed div {
-  padding: 14px;
-  margin: 10px 0;
-  border: 2px solid #000;
+  padding: 20px;
   background-color: #eaeaea;
 }
 
-/* THEMES */
-.light {
+/* COLOR MODES */
+.light-mode {
   background-color: #ffffff;
   color: #000000;
 }
 
-.dark {
+.dark-mode {
   background-color: #222222;
   color: #ffffff;
 }
 
-.blue {
+.blue-mode {
   background-color: #123a5c;
   color: #ffffff;
 }
 
-/* RESPONSIVE (WINDOW SQUEEZE) */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
+/* ITEM DISPLAY STYLES */
+.expanded-view div {
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid #bbb;
+}
 
-  aside {
-    order: 2;
-    width: 100%;
-  }
+.compact-view div {
+  padding: 6px;
+  margin: 3px 0;
+}
 
-  section {
-    order: 1;
-    width: 100%;
-  }
+.boxed-view div {
+  padding: 14px;
+  margin: 10px 0;
+  border: 2px solid #000;
+  background-color: #f0f0f0;
+}
+
+aside select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background: white;
 }
