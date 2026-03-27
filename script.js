@@ -1,63 +1,56 @@
-// SELECT ELEMENTS
-const itemsContainer = document.getElementById("itemsContainer");
-const themeOption = document.getElementById("themeOption");
-const layoutOption = document.getElementById("layoutOption");
+const itemList = document.getElementById("itemList");
+const themeSelect = document.getElementById("themeSelect");
+const listStyleSelect = document.getElementById("listStyleSelect");
 
-// SAMPLE DATA
-const colorItems = ["Red", "Blue", "Green", "Orange", "Purple"];
+// Sample items
+const items = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
 
-// RETRIEVE SAVED SETTINGS OR USE DEFAULTS
-let userSettings = JSON.parse(localStorage.getItem("userSettings")) || {
-  theme: "light-mode",
-  layout: "expanded-view"
+// Load preferences from localStorage or use defaults
+let settings = JSON.parse(localStorage.getItem("settings")) || {
+  theme: "light",
+  listStyle: "expanded"
 };
 
-// DISPLAY LIST ITEMS
-function displayItems() {
-  itemsContainer.innerHTML = "";
-
-  colorItems.forEach(color => {
-    const itemBox = document.createElement("div");
-    itemBox.textContent = color;
-    itemsContainer.appendChild(itemBox);
+// Render the list dynamically
+function renderList() {
+  itemList.innerHTML = "";
+  items.forEach(item => {
+    const div = document.createElement("div");
+    div.textContent = item;
+    itemList.appendChild(div);
   });
-
-  itemsContainer.className = userSettings.layout;
+  itemList.className = settings.listStyle;
 }
 
-// APPLY SELECTED THEME
-function setTheme() {
-  document.body.className = userSettings.theme;
+// Apply theme to body
+function applyTheme() {
+  document.body.className = settings.theme;
 }
 
-// STORE SETTINGS
-function storeSettings() {
-  localStorage.setItem("userSettings", JSON.stringify(userSettings));
+// Save current settings
+function saveSettings() {
+  localStorage.setItem("settings", JSON.stringify(settings));
 }
 
-// HANDLE THEME CHANGE
-themeOption.addEventListener("change", () => {
-  userSettings.theme = themeOption.value;
-  setTheme();
-  storeSettings();
+// Event listeners
+themeSelect.addEventListener("change", () => {
+  settings.theme = themeSelect.value;
+  applyTheme();
+  saveSettings();
 });
 
-// HANDLE LAYOUT CHANGE
-layoutOption.addEventListener("change", () => {
-  userSettings.layout = layoutOption.value;
-  displayItems();
-  storeSettings();
+listStyleSelect.addEventListener("change", () => {
+  settings.listStyle = listStyleSelect.value;
+  renderList();
+  saveSettings();
 });
 
-// INITIAL SETUP
-function loadApp() {
-  // Sync dropdowns with saved values
-  themeOption.value = userSettings.theme;
-  layoutOption.value = userSettings.layout;
-
-  setTheme();
-  displayItems();
+// Initialize page
+function init() {
+  themeSelect.value = settings.theme;
+  listStyleSelect.value = settings.listStyle;
+  applyTheme();
+  renderList();
 }
 
-// RUN APP
-loadApp();
+init();
